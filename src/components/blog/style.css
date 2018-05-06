@@ -1,0 +1,24 @@
+.containerBlog{
+    background-color: #151515;
+    padding: 0 0;
+
+    border: 0
+}
+.containerBlog > .img-container{
+    height: 400px;
+    background-size: cover;
+    background-position: center center;
+    position: relative
+
+}
+.containerBlog .desc{
+    padding: 5px 10px;
+    width:100%;
+    position: absolute;
+    bottom: 0;
+    background: -moz-linear-gradient(top, rgba(30,87,153,0) 0%, rgba(27,78,138,0) 10%, rgba(0,0,0,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(30,87,153,0) 0%,rgba(27,78,138,0) 10%,rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(30,87,153,0) 0%,rgba(27,78,138,0) 10%,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#000000',GradientType=0 );
+}
+

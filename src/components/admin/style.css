@@ -1,0 +1,16 @@
+.btn-primary{
+    background-color: #e6213f
+}
+
+.card-form{
+    margin-top: 30px
+}
+
+.flex-menu-form{
+    display: flex;
+    
+}
+
+.flex-menu-form > * {
+    align-self: center
+}

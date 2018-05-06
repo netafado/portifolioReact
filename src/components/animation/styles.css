@@ -1,0 +1,35 @@
+.pageAnimation{
+    transition: all 1.5s
+}
+.fade-enter{
+    opacity: 0;
+    
+}
+.fade-exited{
+    opacity: 0;
+    
+}
+.fade-enter-done{
+    opacity: 1;
+}
+.fade-exited{
+    opacity: 0;
+}
+
+/* SLIDE IN */
+.slide-enter{
+    transform: translate(-100%);
+    
+}
+.slide-exited{
+    transform: translate(-100%);
+    
+}
+.slide-enter-done{
+    transform: translate(0%);
+}
+.slide-exited{
+    transform: translate(-100%);
+}
+
+
