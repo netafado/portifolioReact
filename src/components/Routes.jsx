@@ -4,8 +4,8 @@ import About from './about'
 import Blog from './blog/Blog'
 import Contato from './Contato'
 import HowIdo from './howIdo'
-import AdminPage from './admin/admin'
-import Profile from './admin/Profile'
+import AdminPage from '../containers/admin'
+
 
 import Home from './home/index'
 
@@ -17,8 +17,8 @@ const Routes = (props)=>(
             <Route path="/blog" render={()=>(<Blog />)}/>
             <Route path="/contato" render={()=>(<Contato/>)}/>
             <Route path="/comofaco" render={()=>(<HowIdo/>)}/>
-            <Route path="/admin" render={()=>(<AdminPage/>)} exact/>
-            <Route path="/profile" render={()=>(<Profile/>)}/>
+            <Route path="/admin" render={()=>(<AdminPage/>) } exact/>
+
         </div>        
     </BrowserRouter >
 )
