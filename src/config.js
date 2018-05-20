@@ -1,4 +1,4 @@
-const API_URL = 'http://api.isaiasfrancisco.com.br'
+const API_URL = 'https://api.isaiasfrancisco.com.br'
 
 export default {
     API_URL
