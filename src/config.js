@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001'
+const API_URL = 'http://api.isaiasfrancisco.com.br'
 
 export default {
     API_URL

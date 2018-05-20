@@ -4,7 +4,6 @@ import AnimationPage from '../components/animation/PageAnimation'
 import ScreenSize from '../utils/screenSize'
 import { Redirect } from 'react-router-dom'
 import './style.css'
-import axios from 'axios'
 
 import {bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
@@ -16,12 +15,10 @@ class Admin extends Component{
     state = {
         email: '',
         password: '',
-        error: '',
-        success: false
+        error: ''
     }
 
     handleEmailInput = (e)=>{
-        console.log(e.target.value)
         this.setState({
             email: e.target.value
         })
@@ -41,15 +38,12 @@ class Admin extends Component{
 
     componentWillReceiveProps(nextprops){
         console.log(nextprops)
-        if(nextprops.user.user.auth){
-            this.props.history.push('/profile')
-        }
             
     }
     
     render(){
-        if(this.state.auth){
-            return <Redirect to='/profile' />
+        if(this.props.user && this.props.user.auth){
+            return <Redirect to='/profile' {...this.props} />
         }
         return (
             <Layout>
@@ -67,6 +61,7 @@ class Admin extends Component{
                                         required value={this.state.password} 
                                         onChange={this.handlePassInput}/>
                                 <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Sign in</button>
+                                {}
                             </form>
                         </div>
                     </ScreenSize>            
@@ -78,7 +73,7 @@ class Admin extends Component{
 function mapStateToProps(state){
     console.log(state)
     return{
-        user: state.user
+        user: state.getUser.user
     }
 }
 

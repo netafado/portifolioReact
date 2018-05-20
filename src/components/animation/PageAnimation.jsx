@@ -15,7 +15,6 @@ class PageAnimation extends Component{
                 unmountOnExit
             >            
             {state => {
-                console.log(state)
                 return(
                     <div className="pageAnimation">
                         {this.props.children}
