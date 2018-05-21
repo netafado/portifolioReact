@@ -6,6 +6,7 @@ import Contato from './Contato'
 import HowIdo from './howIdo'
 import AdminPage from '../containers/admin'
 import Profile from '../components/admin/Profile'
+import newPost from '../components/admin/newPost'
 
 import Auth from '../hoc/auth'
 
@@ -21,7 +22,8 @@ const Routes = (props)=>(
             <Route path="/contato" render={()=>(<Contato/>)}/>
             <Route path="/comofaco" render={()=>(<HowIdo/>)}/>
             <Route path="/admin" render={()=>(<AdminPage/>) } exact/>
-            <Route path="/profile" render={(props)=>(<Profile/>) } exact/>
+            <Route path="/profile"component={Auth(Profile)} exact/>
+            <Route path="/user/post" component={Auth(newPost)} exact/>
 
         </div>        
     </BrowserRouter >

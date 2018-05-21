@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from '../actions/index'
+import './style.css'
 
 export default function(ComposedClass){
     class Auth extends Component{
@@ -10,18 +11,33 @@ export default function(ComposedClass){
         componentWillMount(){
             this.props.dispatch(auth())
         }
+        componentWillReceiveProps(nextProps){
+            
+            this.setState({
+                loading: false
+            });
+
+            if(!nextProps.login.user.isAuth){
+                this.props.history.push('/admin')
+            }           
+        }
         render(){
             if(this.state.loading){
-                return <div className="loader">loading...</div>
+                return (
+                <div className='w-loader'>
+                    <div className="loader">
+                        <div>loading...</div>
+                    </div>
+                </div>
+)
             }
-            return <ComposedClass {...this.props} user=""/>
+            return <ComposedClass {...this.props} {...this.props.user}/>
         }
     }
 
     function mapStateToProps(state){
-        console.log(state.getUser)
         return{
-             user: state.getUser
+             login: state.getUser
         }
     }
 
