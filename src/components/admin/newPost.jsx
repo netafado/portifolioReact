@@ -10,21 +10,38 @@ class newPost extends Component {
             title: "isaias",
             content: "teste",
             desc: "adfasdf",
-            img: "",
-            author: props.login.id
+            img: null,
+            author: this.props.login.user.id 
 
          }
     }
-
+     
     async sendRequest (e){
-        let that = this;
-        console.log(that)
         e.preventDefault();
-        await axios.post(`${config.API_URL}/blog`, that.state, {withCredentials: true})
+        const fd = new FormData();
+        fd.append('img', this.state.img);
+        fd.append('title', this.state.title);
+        fd.append('content', this.state.content);
+        fd.append('author', this.state.author)
+        console.log(this.state)
+        await axios.post(`${config.API_URL}/blog`, fd, {withCredentials: true})
             .then(data => {console.log(data)})
             .catch(err =>  {console.log(err)})
     }
-    render() { 
+
+    titleChange(e){
+        this.setState({
+            title: e.target.value
+        })
+    }
+
+    imgChange(e){
+        
+        this.setState({
+            img: e.target.files[0]
+        })
+    }
+    render() {
         return ( 
         
         <Layout>
@@ -36,10 +53,10 @@ class newPost extends Component {
                         <p>{this.props.login.user ? this.props.login.user.email : '' }</p>
                     </div>
                     <div>
-                        <form onSubmit={this.sendRequest.bind(this)}>
+                        <form onSubmit={this.sendRequest.bind(this)} encType="multipart/form-data">
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Title</label>
-                                <input type="text" className="form-control" id="title" placeholder="Titulo" name="title"/>
+                                <input type="text" className="form-control" id="title" placeholder="Titulo" name="title" onChange={this.titleChange.bind(this)}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">descricao</label>
@@ -51,7 +68,7 @@ class newPost extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">descricao</label>
-                                <input type="file" name="pic" accept="image/*" />
+                                <input type="file" name="image" accept="image/*" onChange={this.imgChange.bind(this)}/>
                             </div>
                             
                             <button type="submit" className="btn btn-default">Confirm identity</button>
