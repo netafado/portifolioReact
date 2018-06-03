@@ -3,7 +3,7 @@ const Footer = (props)=>{
     return(
         <footer>
             <div className="container">
-                <div className="col-xs-12 redes">
+                <div className="col-sm-6 redes">
                     <a href="/">
                         <img src="/img/facebook.svg" alt="Facebook" />
                     </a>
@@ -11,7 +11,10 @@ const Footer = (props)=>{
                         <img src="/img/whatsapp.svg" alt="Facebook"/>
                     </a>
                     <p>cel.: +55 11 98893 7856</p>
-                </div>            
+                </div>
+                <div className="col-sm-6">
+                    <img src="/img/ferramentas.png" alt="Ferramentas" />
+                </div>           
             </div>
         </footer>
     )
