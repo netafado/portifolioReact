@@ -3,7 +3,9 @@ import Routes from './components/Routes'
 import './app.css'
 
 class App extends Component {
+  
   render() {
+    console.log(process.env);
     return (
       <Routes />
     );

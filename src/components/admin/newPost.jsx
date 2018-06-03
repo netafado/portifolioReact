@@ -3,13 +3,14 @@ import Layout from '../layout/index'
 import AnimationPage from '../animation/PageAnimation';
 import axios from 'axios';
 import config from '../../config';
+import RichTextEditor from 'react-rte';
 class newPost extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            title: "isaias",
-            content: "teste",
-            desc: "adfasdf",
+            title: "",
+            content: RichTextEditor.createEmptyValue(),
+            desc: "",
             img: null,
             author: this.props.login.user.id 
 
@@ -21,7 +22,7 @@ class newPost extends Component {
         const fd = new FormData();
         fd.append('img', this.state.img);
         fd.append('title', this.state.title);
-        fd.append('content', this.state.content);
+        fd.append('content', this.state.content.toString('html'));
         fd.append('author', this.state.author)
         console.log(this.state)
         await axios.post(`${config.API_URL}/blog`, fd, {withCredentials: true})
@@ -35,6 +36,18 @@ class newPost extends Component {
         })
     }
 
+    descChange(e){
+        this.setState({
+            desc: e.target.value
+        })
+    }
+
+    contentChange(e){        
+        this.setState({
+            content: e
+        })
+    }
+
     imgChange(e){
         
         this.setState({
@@ -42,6 +55,7 @@ class newPost extends Component {
         })
     }
     render() {
+        console.log(this.state)
         return ( 
         
         <Layout>
@@ -60,11 +74,14 @@ class newPost extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">descricao</label>
-                                <input type="text" className="form-control" id="descricao" placeholder="descricao" name="descricao"/>
+                                <input type="text" className="form-control" id="descricao" placeholder="descricao" name="descricao" onChange={this.descChange.bind(this)}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Conteudo</label>
-                                <textarea className="form-control" rows="3" name="content"></textarea>
+                                <RichTextEditor
+                                    value={this.state.content}
+                                    onChange={this.contentChange.bind(this)}
+                                />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">descricao</label>

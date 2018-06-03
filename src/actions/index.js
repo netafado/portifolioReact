@@ -36,3 +36,36 @@ export async function  auth(){
         payload :request
     }
 }
+
+export async function getPosts(){
+    const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog`, {withCredentials: true})
+                            .then((res)=>{
+                                return res.data
+                            })
+                            .catch(err => {
+                                return{
+                                    err
+                                }
+                            })
+    return {
+        type: "GET_POSTS",
+        payload: req
+    }
+}
+
+
+export async function getPost(id){
+    const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog/${id}`, {withCredentials: true})
+                            .then((res)=>{
+                                return res.data
+                            })
+                            .catch(err => {
+                                return{
+                                    err
+                                }
+                            })
+    return {
+        type: "GET_POST",
+        payload: req
+    }
+}
