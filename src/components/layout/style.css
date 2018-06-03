@@ -1,3 +1,7 @@
 .menu-flex a.active{
     color: white
 }
+
+.ferra{
+    max-width: 120px;
+}

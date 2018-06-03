@@ -13,7 +13,7 @@ const Footer = (props)=>{
                     <p>cel.: +55 11 98893 7856</p>
                 </div>
                 <div className="col-sm-6">
-                    <img src="/img/ferramentas.png" alt="Ferramentas" />
+                    <img className="img-responsive ferra" src="/img/ferramentas.png" alt="Ferramentas" />
                 </div>           
             </div>
         </footer>
