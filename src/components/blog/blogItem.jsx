@@ -5,7 +5,7 @@ const ItemBlog = (props)=>{
         <div className="row">
             {props.blog.map((item, i)=>{
                 return(
-                    <div className="col-sm-4 containerBlog ">
+                    <div className="col-sm-4 containerBlog " key={i}>
                         <div className="img-container" style={{backgroundImage:`url(${item.img})`}}>
                             <div className="desc">
                                 <h5>{item.title}</h5>

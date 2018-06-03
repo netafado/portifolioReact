@@ -19,6 +19,7 @@ class BlogArtigo extends Component{
     render(){
         
         console.log(this.props)
+
         return(
             <Layout >
                 <PageAnimation type="fade">
@@ -26,8 +27,7 @@ class BlogArtigo extends Component{
                     
                     <div className="page-blog container">
                         <h1>{this.props.post.title}</h1>
-                        <div className="conteudo">
-                            {this.props.post.title}
+                        <div className="conteudo" dangerouslySetInnerHTML={{__html: this.props.post.content}}>
                         </div>
                         <div className="img-wrapper">
                             <img className="img-responsive" src={`http://api.isaiasfrancisco.com.br/upload/${this.props.post.img}`} />

@@ -5,7 +5,7 @@ function Itens(posts){
     
     return posts.map((item, i)=>{
         return (
-        <div className="col-sm-4 containerBlog " key={i}>
+        <div className="col-sm-4 col-md-3 containerBlog" key={i}>
             <div className="img-container" style={{backgroundImage:`url(http://api.isaiasfrancisco.com.br/upload/${item.img})`}}>
                 <div className="desc">
                     <Link to={`/post/${item._id}`}>
@@ -22,11 +22,10 @@ function Itens(posts){
 }
 
 const BlogItem = (props) => {
-    console.log(props)
     return(
-    <div className="container-fluid">
+    <div className="container pd-40-top pd-80-bottom">
         <div className="row">
-            <h1 className="text-center">Ultimas noticias</h1>
+            <h1 className="text-center pd-40-bottom">Ultimas notícias</h1>
             {props.posts ? Itens(props.posts)  : null}
         </div>
     </div>

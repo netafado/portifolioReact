@@ -4,6 +4,7 @@ import AnimationPage from '../animation/PageAnimation';
 import axios from 'axios';
 import config from '../../config';
 import RichTextEditor from 'react-rte';
+import './style.css';
 class newPost extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +13,9 @@ class newPost extends Component {
             content: RichTextEditor.createEmptyValue(),
             desc: "",
             img: null,
-            author: this.props.login.user.id 
+            thumb: null,
+            author: this.props.login.user.id,
+            type: null
 
          }
     }
@@ -23,8 +26,8 @@ class newPost extends Component {
         fd.append('img', this.state.img);
         fd.append('title', this.state.title);
         fd.append('content', this.state.content.toString('html'));
-        fd.append('author', this.state.author)
-        console.log(this.state)
+        fd.append('author', this.state.author);
+        fd.append('thumb', this.state.thumb)
         await axios.post(`${config.API_URL}/blog`, fd, {withCredentials: true})
             .then(data => {console.log(data)})
             .catch(err =>  {console.log(err)})
@@ -48,14 +51,25 @@ class newPost extends Component {
         })
     }
 
-    imgChange(e){
-        
+    imgChange(e){  
+        console.log(this.state)     
         this.setState({
             img: e.target.files[0]
         })
     }
+    radioButton(e){   
+        console.log(e.target.value)     
+        this.setState({
+            type: e.target.value
+        })
+    }
+    thumbChange(e){        
+        this.setState({
+            thumb: e.target.files[0]
+        })
+    }
     render() {
-        console.log(this.state)
+        
         return ( 
         
         <Layout>
@@ -76,16 +90,26 @@ class newPost extends Component {
                                 <label htmlFor="exampleInputEmail1">descricao</label>
                                 <input type="text" className="form-control" id="descricao" placeholder="descricao" name="descricao" onChange={this.descChange.bind(this)}/>
                             </div>
+
+                            <div className="radio" onChange={this.radioButton.bind(this)}>
+                                <label><input type="radio" value="portifolio" name="type-post"/>portifolio</label>
+                                <label><input type="radio"  value="blog" name="type-post"/>Blog</label>                                
+                            </div>
+
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Conteudo</label>
+                                <label htmlFor="exampleInputEmail1">Conteúdo</label>
                                 <RichTextEditor
                                     value={this.state.content}
                                     onChange={this.contentChange.bind(this)}
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">descricao</label>
+                                <label htmlFor="exampleInputEmail1">Grande</label>
                                 <input type="file" name="image" accept="image/*" onChange={this.imgChange.bind(this)}/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputEmail1">Thumb</label>
+                                <input type="file" name="thumb" accept="image/*" onChange={this.thumbChange.bind(this)}/>
                             </div>
                             
                             <button type="submit" className="btn btn-default">Confirm identity</button>

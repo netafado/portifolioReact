@@ -5,7 +5,6 @@ import './app.css'
 class App extends Component {
   
   render() {
-    console.log(process.env);
     return (
       <Routes />
     );
