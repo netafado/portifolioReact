@@ -2,6 +2,8 @@ import React from 'react'
 import PropsTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 function Itens(posts){
+    if(!posts)
+        return
     return posts.map((item, i)=>{
         return (
         <div className="col-sm-4 containerBlog " key={i}>
