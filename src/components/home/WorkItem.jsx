@@ -4,7 +4,7 @@ import './style.css'
 
 let WorkItem = props =>(
     <div className="item-port">
-        <video autoPlay loop>
+        <video autoPlay loop playsinline poster={props.image}>
             <source src={`videos/${props.video}.mp4`} type="video/mp4" />
             <source src={`videos/${props.video}.ogg`} type="video/ogg" />
             <img className="img-responsive" src={props.image} alt="web" />
