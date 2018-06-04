@@ -23,6 +23,12 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#000000',GradientType=0 );
 }
 
+
+.page-blog{
+    margin-top: 60px;
+    padding-bottom: 60px
+}
+
 .containerBlog .desc h5{
     text-shadow: 1px 1px 1px black
 }

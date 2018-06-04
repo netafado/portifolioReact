@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Layout from '../components/layout'
 import PageAnimation from '../components/animation/PageAnimation'
+import Loader from '../utils/carregando'
 import { connect } from 'react-redux'
 import {getPost} from '../actions/index'
 
@@ -10,16 +11,23 @@ class BlogArtigo extends Component{
             title: 'teste',
             content: "sadfadsfasdf asdfa sdf fasdfasd",
             img: 'asdfasdfasd.jpg'
-        }
+        },
+        carregando: true
     }
     componentWillMount(){
         const id = this.props.match.params.id
         this.props.dispatch(getPost(id));
     }
+
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            carregando: false
+        })
+    }
     render(){
         
-        console.log(this.props)
-
+        window.scrollTo(0, 0);
         return(
             <Layout >
                 <PageAnimation type="fade">
@@ -32,11 +40,10 @@ class BlogArtigo extends Component{
                         <div className="img-wrapper">
                             <img className="img-responsive" src={`http://api.isaiasfrancisco.com.br/upload/${this.props.post.img}`} />
                         </div>                     
-                    </div>               
-                
+                    </div>                
                 :
 
-                <h2>carregando</h2>
+                <Loader carregando={this.state.carregando} />
                 
                 }
 

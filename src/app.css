@@ -914,6 +914,7 @@
   }
   .port-container .item-port {
     width: 25%;
+    text-align: center
   }
   .port-container .item-port img {
     max-width: 100px;

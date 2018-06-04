@@ -27,10 +27,19 @@ class newPost extends Component {
         fd.append('title', this.state.title);
         fd.append('content', this.state.content.toString('html'));
         fd.append('author', this.state.author);
-        fd.append('thumb', this.state.thumb)
+        fd.append('thumb', this.state.thumb);
+        let btn = document.getElementById('btnEnviar');
+        btn.innerHTML = "Enviando";
+        btn.setAttribute('disabled', true);
         await axios.post(`${config.API_URL}/blog`, fd, {withCredentials: true})
-            .then(data => {console.log(data)})
-            .catch(err =>  {console.log(err)})
+            .then(data => {
+                console.log(data);
+                btn.removeAttribute('disabled');
+                btn.innerHTML = "Enviar";
+            })
+            .catch(err =>  {
+                console.log(err)
+            })
     }
 
     titleChange(e){
@@ -112,7 +121,7 @@ class newPost extends Component {
                                 <input type="file" name="thumb" accept="image/*" onChange={this.thumbChange.bind(this)}/>
                             </div>
                             
-                            <button type="submit" className="btn btn-default">Confirm identity</button>
+                            <button type="submit" className="btn btn-default" style={{backgroundColor: "black"}} id="btnEnviar">Enviar</button>
                         </form>
                     </div>
                 </div>

@@ -5,3 +5,12 @@
 .flex-center > *{
     align-self: center
 }
+video{
+    width: 50%;
+    height: auto; 
+    margin: auto
+}
+
+.item-port{
+    text-emphasis: center;
+}
