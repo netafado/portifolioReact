@@ -4,6 +4,7 @@ import AnimationPage from '../animation/PageAnimation';
 import axios from 'axios';
 import config from '../../config';
 import RichTextEditor from 'react-rte';
+import Error  from '../../utils/msg'
 import './style.css';
 class newPost extends Component {
     constructor(props) {
@@ -15,27 +16,69 @@ class newPost extends Component {
             img: null,
             thumb: null,
             author: this.props.login.user.id,
-            type: null
+            type: null,
+            err: null,
+            sended: null
 
          }
     }
-     
-    async sendRequest (e){
-        e.preventDefault();
+
+    getFormReady(){
+        let errs = []; 
         const fd = new FormData();
+        if(this.state.title == '' || this.state.title.length < 4){
+            errs.push('Title is required');
+        }
+        this.state.content.toString('html')
+
+        if(this.state.content.toString('html') ==   ""){
+            errs.push('content is required');
+        }
+
         fd.append('img', this.state.img);
-        fd.append('title', this.state.title);
+        fd.append('title', this.state.desc);
+        fd.append('desc', this.state.title);
         fd.append('content', this.state.content.toString('html'));
         fd.append('author', this.state.author);
         fd.append('thumb', this.state.thumb);
+        fd.append('type', this.state.type);
+
+        if(errs.length > 0)
+        {
+            return new Error('O formulário contém erros')
+        }            
+        return fd;
+    }
+     
+    async sendRequest (e){
+
+        e.preventDefault();
+        const fd = this.getFormReady();
+        if(fd instanceof Error)
+        {
+            this.setState({
+                err: 'todos os campos são obrigatorios'
+            });
+            return;
+        }
         let btn = document.getElementById('btnEnviar');
         btn.innerHTML = "Enviando";
         btn.setAttribute('disabled', true);
+
         await axios.post(`${config.API_URL}/blog`, fd, {withCredentials: true})
             .then(data => {
-                console.log(data);
+                if(data.data.err)
+                {
+                    this.setState({
+                        err: data.data.err
+                    });
+                }
+                    
                 btn.removeAttribute('disabled');
                 btn.innerHTML = "Enviar";
+                this.setState({
+                    sended: 'Post Criado com sucesso'
+                })
             })
             .catch(err =>  {
                 console.log(err)
@@ -61,13 +104,11 @@ class newPost extends Component {
     }
 
     imgChange(e){  
-        console.log(this.state)     
         this.setState({
             img: e.target.files[0]
         })
     }
     radioButton(e){   
-        console.log(e.target.value)     
         this.setState({
             type: e.target.value
         })
@@ -78,12 +119,14 @@ class newPost extends Component {
         })
     }
     render() {
-        
+        console.log(this.state.err)
         return ( 
         
         <Layout>
             <AnimationPage type="fade">
                 <div className="container">
+                    {this.state.err ? <Error type="err" msg={this.state.err}/> : null}
+                    {this.state.sended ? <Error type="info" msg={this.state.sended}/> : null}
                     <div className="col-sm-12">
                     <h1>Add Post</h1>
                         <p>{this.props.login.user ? this.props.login.user.id : '' }</p>

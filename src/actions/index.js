@@ -37,8 +37,9 @@ export async function  auth(){
     }
 }
 
-export async function getPosts(){
-    const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog`, {withCredentials: true})
+export async function getPosts(limit, type){
+    const URL = `${process.env.API_URL||config.API_URL}/blog?type=${type}&limit=${limit}`
+    const req = await axios.get(URL, {withCredentials: true})
                             .then((res)=>{
                                 return res.data
                             })
@@ -49,6 +50,34 @@ export async function getPosts(){
                             })
     return {
         type: "GET_POSTS",
+        payload: req
+    }
+}
+
+export async function getPostByAuthor(id){
+    const URL = `${process.env.API_URL||config.API_URL}/blog/user/posts/${id}`
+    const req = await axios.get(URL, {withCredentials:true})
+                    .then((resp)=>{
+                        return resp
+                    })
+                    .catch(err => err)
+    console.log(req);
+    return{
+        type: "GET_POSTS_BY_USER",
+        payload: req.data
+    }
+}
+
+export async function deletePostById(id){
+    const URL = `${process.env.API_URL||config.API_URL}/blog/${id}`
+    const req = await axios.delete(URL, {withCredentials:true})
+                    .then((resp)=>{
+                        return resp
+                    })
+                    .catch(err => err)
+    console.log(req);
+    return{
+        type: "DELETE_POST",
         payload: req
     }
 }

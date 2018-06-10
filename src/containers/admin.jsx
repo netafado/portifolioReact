@@ -4,18 +4,17 @@ import AnimationPage from '../components/animation/PageAnimation'
 import ScreenSize from '../utils/screenSize'
 import { Redirect } from 'react-router-dom'
 import './style.css'
-
+import Msg from '../utils/msg'
 import {bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
 import config from '../config'
-
 import {logInUser} from '../actions'
 
 class Admin extends Component{
     state = {
         email: '',
         password: '',
-        error: ''
+        err: ''
     }
 
     handleEmailInput = (e)=>{
@@ -29,16 +28,16 @@ class Admin extends Component{
         })
     }
     sendInfo(e){
-
         e.preventDefault();
         this.props.dispatch(logInUser(this.state))
-
-
     }
 
     componentWillReceiveProps(nextprops){
-        console.log(nextprops)
-            
+         if(nextprops.user){
+            if(nextprops.user.err){
+                this.setState({err: nextprops.user.err})
+            }
+        }            
     }
     
     render(){
@@ -47,10 +46,11 @@ class Admin extends Component{
         }
         return (
             <Layout>
-                <AnimationPage type="fade">
+                <AnimationPage type="fade">                    
                     <ScreenSize classes="container flex-menu-form">
                         <div className="card card-form card-container col-md-4 col-md-offset-4">
-                            <p id="profile-name" className="profile-name-card"></p>
+
+                            {this.state.err ? <Msg type="err" msg={this.state.err} /> : null}
                             <form className="form-signin" onClick={this.sendInfo.bind(this)}>
                                 <span id="reauth-email" className="reauth-email"></span>
                                 <input type="email" id="inputEmail" 
@@ -71,7 +71,7 @@ class Admin extends Component{
     }
 }
 function mapStateToProps(state){
-    console.log(state)
+    console.log(state.getUser.user)
     return{
         user: state.getUser.user
     }

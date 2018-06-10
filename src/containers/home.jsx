@@ -11,7 +11,7 @@ import { getPosts } from '../actions'
 
 class Home extends Component{
     componentWillMount(){
-        this.props.dispatch(getPosts())
+        this.props.dispatch(getPosts(4, "portifolio"))
     }
     render(){
         return(

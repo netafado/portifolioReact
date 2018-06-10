@@ -19,6 +19,9 @@ const Profile = (props)=>{
                     <div className="info">
                         <Link to="user/post"> Novo post</Link>
                     </div>
+                    <div className="info">
+                        <Link to={`user/posts/${props.login.user.id}`} > Editar posts</Link>
+                    </div>
                 </div> 
             </AnimationPage>
         </Layout>

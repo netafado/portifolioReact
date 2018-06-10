@@ -9,6 +9,14 @@ export default function(state = {}, action){
             return{
                 post: action.payload
             }
+        case 'GET_POSTS_BY_USER':
+            return{
+                post: action.payload
+            }
+        case 'DELETE_POST':
+            return{
+               msg: 'post deletado'
+            }
         default:
             return state
     }
