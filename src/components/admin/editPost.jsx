@@ -31,7 +31,7 @@ class editPost extends Component {
     }
     componentWillReceiveProps(nextProps){
         let post = nextProps.post;
-        console.log(post)
+
         if(post){
             this.setState({
                 title: post.title,
@@ -56,8 +56,8 @@ class editPost extends Component {
         }
 
         fd.append('img', this.state.img);
-        fd.append('title', this.state.desc);
-        fd.append('desc', this.state.title);
+        fd.append('title', this.state.title);
+        fd.append('desc', this.state.desc);
         fd.append('content', this.state.content.toString('html'));
         fd.append('author', this.state.author);
         fd.append('thumb', this.state.thumb);

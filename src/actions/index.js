@@ -19,7 +19,6 @@ export function logInUser({email, password}){
     }
 } 
 
-
 export async function  auth(){
     const request = await axios.get(`${process.env.API_URL||config.API_URL}/user/auth`,{withCredentials: true})
                         .then((response)=>{                                
@@ -82,7 +81,6 @@ export async function deletePostById(id){
     }
 }
 
-
 export async function getPost(id){
     const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog/${id}`, {withCredentials: true})
                             .then((res)=>{
@@ -96,5 +94,12 @@ export async function getPost(id){
     return {
         type: "GET_POST",
         payload: req
+    }
+}
+
+export function navMob(value){
+    return {
+        type: "NAV_MOB",
+        payload: value || false
     }
 }

@@ -11,9 +11,8 @@ import Home from '../containers/home'
 import BlogArtigo from '../containers/BlogArtigo'
 import Auth from '../hoc/auth'
 import UserPosts from '../containers/UserPosts'
+import Portifolio from '../containers/Portifolio'
 import userPOstEdit from '../components/admin/editPost'
-
-
 
 
 const Routes = (props)=>(
@@ -27,13 +26,11 @@ const Routes = (props)=>(
             <Route path="/admin" render={()=>(<AdminPage/>) } exact/>
             <Route path="/profile"component={Auth(Profile)} exact/>
             <Route path="/user/post" component={Auth(newPost)} exact/>
+            <Route path="/portifolio" render={()=>(<Portifolio/>) } exact/>
             <Route path="/post/:id" component={BlogArtigo} exact/>
             <Route path='/user/posts/:id' component={Auth(UserPosts)} exact />
             <Route path='/user/post/edit/:id' component={Auth(userPOstEdit)} exact />
-
         </div>        
     </BrowserRouter >
 )
-
-
 export default Routes;

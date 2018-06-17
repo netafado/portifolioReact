@@ -36,8 +36,8 @@ class newPost extends Component {
         }
 
         fd.append('img', this.state.img);
-        fd.append('title', this.state.desc);
-        fd.append('desc', this.state.title);
+        fd.append('title', this.state.title);
+        fd.append('desc', this.state.desc);
         fd.append('content', this.state.content.toString('html'));
         fd.append('author', this.state.author);
         fd.append('thumb', this.state.thumb);
@@ -77,7 +77,18 @@ class newPost extends Component {
                 btn.removeAttribute('disabled');
                 btn.innerHTML = "Enviar";
                 this.setState({
-                    sended: 'Post Criado com sucesso'
+                    sended: 'Post atualizado com sucesso'
+                });
+                //limpar a tela
+                this.setState({
+                    title: "",
+                    content: RichTextEditor.createEmptyValue(),
+                    desc: "",
+                    img: null,
+                    thumb: null,
+                    author: this.props.login.user.id,
+                    type: null,
+                    err: null,
                 })
             })
             .catch(err =>  {

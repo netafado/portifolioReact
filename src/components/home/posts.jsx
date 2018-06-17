@@ -11,9 +11,6 @@ function Itens(posts){
                     <Link to={`/post/${item._id}`}>
                         <h5>{item.title}</h5>
                     </Link>                    
-                    <p >
-                        {item.desc}
-                    </p>
                 </div>
             </div>
         </div>
@@ -25,7 +22,7 @@ const BlogItem = (props) => {
     return(
     <div className="container pd-40-top pd-80-bottom">
         <div className="row">
-            <h1 className="text-center pd-40-bottom">Ultimas notícias</h1>
+            <h1 className="text-center pd-40-bottom">Ultimos trabalhos</h1>
             {props.posts ? Itens(props.posts)  : null}
         </div>
     </div>
