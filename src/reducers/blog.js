@@ -15,7 +15,7 @@ export default function(state = {}, action){
             }
         case 'DELETE_POST':
             return{
-               msg: 'post deletado'
+               postDeleted: action.payload
             }
         default:
             return state
