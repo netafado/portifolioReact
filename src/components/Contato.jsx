@@ -20,8 +20,6 @@ const Contato = props =>
                                 <input id="name" name="name" type="text" placeholder="Seu nome" className="form-control"/>
                             </div>
                         </div>
-                
-
                         <div className="form-group clearfix">
                             <div className="col-md-12">
                                 <input id="email" name="email" type="text" placeholder="seu email" className="form-control"/>

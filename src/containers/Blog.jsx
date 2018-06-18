@@ -8,7 +8,7 @@ import { connect  } from 'react-redux'
 import { getPosts } from '../actions/index'
 class Blog extends Component{
     componentWillMount(){
-        this.props.dispatch(getPosts(null, 'blog'))
+        this.props.dispatch(getPosts(8, 'blog'))
     }
     render(){
         console.log(this.props)

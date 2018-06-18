@@ -71,7 +71,6 @@ class editPost extends Component {
     }
      
     async sendRequest (e){
-
         e.preventDefault();
         const fd = this.getFormReady();
         if(fd instanceof Error)
