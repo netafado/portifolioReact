@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
-import About from './about'
+import About from '../containers/about'
 import Blog from '../containers/Blog'
 import Contato from './Contato'
 import HowIdo from './howIdo'

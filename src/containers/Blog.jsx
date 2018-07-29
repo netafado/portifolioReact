@@ -17,7 +17,7 @@ class Blog extends Component{
                 <PageAnimation type="fade">
                     <div className="page-blog container-fluid">
                         <h1>Blog</h1>                       
-                         {this.props.posts ? <ItemBlog blog={this.props.posts}/> : null}
+                         {this.props.posts && this.props.posts.length > 0 ? <ItemBlog blog={this.props.posts}/> : <p>Nenhum post por enquanto</p>}
                     </div>
                 </PageAnimation>
             </Layout>            
@@ -27,7 +27,7 @@ class Blog extends Component{
 
 function mapStateToProps(state){
     return{
-        posts: state.posts.posts
+        posts: state.blog.posts
     }
 }
 

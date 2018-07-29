@@ -35,25 +35,59 @@ class BlogArtigo extends Component{
     componentDidMount(){
         console.log("did mount");
     }
+    template(type){
+        switch(type){
+            case 'portifolio':
+                return(
+                    <div>
+                        <div className="img-wrapper">                            
+                            <img className="img-responsive" src={`${config.DOMAIN}/upload/${this.props.post.img}`} onLoad={this.imgLoading.bind(this)} alt="imagem principal" />
+                        </div> 
+                        <div className="conteudo" dangerouslySetInnerHTML={{__html: this.props.post.content}}>
+                        </div>
+                    </div>
+                );
+            break;
+            case 'blog':
+                return(
+                    <div>
+                        <div className="img-wrapper">                            
+                            <img className="img-responsive" src={`${config.DOMAIN}/upload/${this.props.post.img}`} onLoad={this.imgLoading.bind(this)} alt="imagem principal"  />
+                        </div> 
+                        <div className="conteudo" dangerouslySetInnerHTML={{__html: this.props.post.content}}>
+                        </div>
+                    </div>
+                );
+            break;
+            default:
+                return(
+                    <div>
+                        <div className="img-wrapper">                            
+                            <img className="img-responsive" src={`${config.DOMAIN}/upload/${this.props.post.img}`} onLoad={this.imgLoading.bind(this)} alt="imagem principal" />
+                        </div> 
+                        <div className="conteudo" dangerouslySetInnerHTML={{__html: this.props.post.content}}>
+                        </div>
+                    </div>
+                );
+            break;
+        }
+    }
     render(){
         
         window.scrollTo(0, 0);
+        console.log(this.props.post ? this.props.post.type :  " ")
         return(
             <Layout >
                 <PageAnimation type="fade">
                     { this.props.post && !this.state.carregando ?                    
                         <div className="page-blog container">
                             <h1>{this.props.post.title}</h1>
-                            <div className="conteudo" dangerouslySetInnerHTML={{__html: this.props.post.content}}>
-                            </div>
-                            <div className="img-wrapper">                            
-                                <img className="img-responsive" src={`${config.DOMAIN}/upload/${this.props.post.img}`} onLoad={this.imgLoading.bind(this)} />
-                            </div>                     
+                            {
+                                this.template(this.props.post.type)
+                            }                  
                         </div>                
                     :
-
-                    <Loader carregando={this.state.carregando} />
-                
+                    <Loader carregando={this.state.carregando} />                
                     }
 
                 </PageAnimation>

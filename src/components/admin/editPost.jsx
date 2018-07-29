@@ -46,12 +46,12 @@ class editPost extends Component {
     getFormReady(){
         let errs = []; 
         const fd = new FormData();
-        if(this.state.title == '' || this.state.title.length < 4){
+        if(this.state.title === '' || this.state.title.length < 4){
             errs.push('Title is required');
         }
         this.state.content.toString('html')
 
-        if(this.state.content.toString('html') ==   ""){
+        if(this.state.content.toString('html') ===   ""){
             errs.push('content is required');
         }
 
@@ -96,7 +96,7 @@ class editPost extends Component {
                 btn.removeAttribute('disabled');
                 btn.innerHTML = "Enviar";
                 this.setState({
-                    sended: 'Post Criado com sucesso'
+                    sended: 'Post atualizado com sucesso'
                 })
             })
             .catch(err =>  {

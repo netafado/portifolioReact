@@ -6,6 +6,7 @@ import navMob from './nav'
 const rootReducers = combineReducers({
     getUser: user,
     posts: posts,
+    blog: posts,
     navMob: navMob 
 })
 

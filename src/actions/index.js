@@ -40,6 +40,7 @@ export async function getPosts(limit, type){
     const URL = `${process.env.API_URL||config.API_URL}/blog?type=${type}&limit=${limit}`
     const req = await axios.get(URL, {withCredentials: true})
                             .then((res)=>{
+                                console.log(res.data)
                                 return res.data
                             })
                             .catch(err => {
@@ -94,6 +95,21 @@ export async function getPost(id){
     return {
         type: "GET_POST",
         payload: req
+    }
+}
+
+export async function getCursos(){
+    const  cursos =  await axios.get('https://teamtreehouse.com/isaiasfranciscodossantos.json')
+                                .then(res=>{
+                                    return res.data
+                                })
+                                .catch(err => {return {err}})
+
+    return {
+        type: {
+            type: "GET_CURSOS",
+            payload: cursos
+        }
     }
 }
 

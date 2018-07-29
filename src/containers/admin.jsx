@@ -5,9 +5,7 @@ import ScreenSize from '../utils/screenSize'
 import { Redirect } from 'react-router-dom'
 import './style.css'
 import Msg from '../utils/msg'
-import {bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
-import config from '../config'
 import {logInUser} from '../actions'
 
 class Admin extends Component{

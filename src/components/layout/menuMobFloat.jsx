@@ -21,7 +21,7 @@ const MenuMob = (props)=>{
 }
 
 MenuMob.propTypes = {
-    showMenu: propTypes.bool.isRequired
+    showMenu: propTypes.bool
 }
 
 export default MenuMob
