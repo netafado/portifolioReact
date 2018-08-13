@@ -13,6 +13,12 @@ class Home extends Component{
     componentWillMount(){
         this.props.dispatch(getPosts(4, "portifolio"))
     }
+    windowScroll(){
+        document.querySelector('#posts').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'end'
+          });
+    }
     render(){
         return(
         <Layout active={this.props.active}>
@@ -22,9 +28,12 @@ class Home extends Component{
                         <div className="home" id="home">
                             <About /> 
                             <Works /> 
+                            <a href="#posts" onClick={this.windowScroll}>
+                                <img src="img/baixo.svg" style={{'maxWidth':'80px'}} alt="Para baixo"/>
+                            </a>
                         </div>
                     </ScreenSize>
-                    <Posts posts={this.props.posts.posts} />
+                    <Posts id="posts" posts={this.props.posts.posts} />
                 </div>
             </AnimationPage>
         </Layout>
