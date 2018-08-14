@@ -25,6 +25,11 @@ class BlogArtigo extends Component{
             carregando: false
         })
     }
+
+    loadImage(){
+        var img = document.getElementById("mainImg");
+        img.classList.remove('hide');
+    }
     render(){
         
         window.scrollTo(0, 0);
@@ -38,7 +43,7 @@ class BlogArtigo extends Component{
                         <div className="conteudo" dangerouslySetInnerHTML={{__html: this.props.post.content}}>
                         </div>
                         <div className="img-wrapper">
-                            <img className="img-responsive" src={`http://api.isaiasfrancisco.com.br/upload/${this.props.post.img}`} />
+                            <img id="mainImg" className="img-responsive hide" src={`http://api.isaiasfrancisco.com.br/upload/${this.props.post.img}`} onLoad={this.loadImage.bind(this)}/>
                         </div>                     
                     </div>                
                 :
