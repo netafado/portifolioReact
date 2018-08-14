@@ -14,3 +14,31 @@
 .flex-menu-form > * {
     align-self: center
 }
+
+.arrowDown{
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+
+@keyframes down{
+    0%{
+        opacity: 0;
+        margin-top: 0;
+    }
+    50%{
+        opacity: 1;
+        margin-top: 30px;
+    }
+    100%{
+        opacity: 0;
+        margin-top: 40px;
+    }
+}
+
+.arrowDown img{
+    position: absolute;
+    animation: down 2.5s ease-out infinite;
+    margin-left: calc(50% - 40px);
+}

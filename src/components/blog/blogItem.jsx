@@ -1,4 +1,5 @@
 import React from 'react'
+import config from '../../config'
 const ItemBlog = (props)=>{
     
         return(
@@ -6,12 +7,14 @@ const ItemBlog = (props)=>{
             {props.blog.map((item, i)=>{
                 return(
                     <div className="col-sm-4 containerBlog " key={i}>
-                        <div className="img-container" style={{backgroundImage:`url(${item.img})`}}>
+                        <div className="img-container" style={{backgroundImage:`url(${config.DOMAIN}/upload/${item.thumb})`}}>
                             <div className="desc">
-                                <h5>{item.title}</h5>
-                                <p >
-                                    {item.desc}
-                                </p>
+                                <a href={`/post/${item._id}`}>
+                                    <h5>{item.title}</h5>
+                                    <p >
+                                        {item.desc}
+                                    </p>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -4,9 +4,12 @@ import AnimationPage from '../animation/PageAnimation';
 import axios from 'axios';
 import config from '../../config';
 import RichTextEditor from 'react-rte';
-import Error  from '../../utils/msg'
+import {getPost} from '../../actions/index';
+import Error  from '../../utils/msg';
+import { connect } from 'react-redux';
+import Config from '../../config'
 import './style.css';
-class newPost extends Component {
+class editPost extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -18,11 +21,28 @@ class newPost extends Component {
             author: this.props.login.user.id,
             type: null,
             err: null,
-            sended: null
-
+            sended: null,
+            postID: this.props.match.params.id
          }
     }
+    componentWillMount(){
+        
+        this.props.dispatch(getPost(this.state.postID));
+    }
+    componentWillReceiveProps(nextProps){
+        let post = nextProps.post;
 
+        if(post){
+            this.setState({
+                title: post.title,
+                content: RichTextEditor.createValueFromString(post.content, 'html'),
+                desc: post.desc,
+                type: post.type,
+                img: post.img,
+                thumb: post.thumb
+            })
+        }
+    }
     getFormReady(){
         let errs = []; 
         const fd = new FormData();
@@ -51,7 +71,6 @@ class newPost extends Component {
     }
      
     async sendRequest (e){
-
         e.preventDefault();
         const fd = this.getFormReady();
         if(fd instanceof Error)
@@ -65,7 +84,7 @@ class newPost extends Component {
         btn.innerHTML = "Enviando";
         btn.setAttribute('disabled', true);
 
-        await axios.post(`${config.API_URL}/blog`, fd, {withCredentials: true})
+        await axios.put(`${config.API_URL}/blog/user/post/${this.state.postID}`, fd, {withCredentials: true})
             .then(data => {
                 if(data.data.err)
                 {
@@ -78,17 +97,6 @@ class newPost extends Component {
                 btn.innerHTML = "Enviar";
                 this.setState({
                     sended: 'Post atualizado com sucesso'
-                });
-                //limpar a tela
-                this.setState({
-                    title: "",
-                    content: RichTextEditor.createEmptyValue(),
-                    desc: "",
-                    img: null,
-                    thumb: null,
-                    author: this.props.login.user.id,
-                    type: null,
-                    err: null,
                 })
             })
             .catch(err =>  {
@@ -130,7 +138,6 @@ class newPost extends Component {
         })
     }
     render() {
-        console.log(this.state.err)
         return ( 
         
         <Layout>
@@ -147,11 +154,11 @@ class newPost extends Component {
                         <form onSubmit={this.sendRequest.bind(this)} encType="multipart/form-data">
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Title</label>
-                                <input type="text" className="form-control" id="title" placeholder="Titulo" name="title" onChange={this.titleChange.bind(this)}/>
+                                <input type="text" className="form-control" id="title" placeholder="Titulo" name="title" onChange={this.titleChange.bind(this)} value={this.state.title}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">descricao</label>
-                                <input type="text" className="form-control" id="descricao" placeholder="descricao" name="descricao" onChange={this.descChange.bind(this)}/>
+                                <input type="text" className="form-control" id="descricao" placeholder="descricao" name="descricao" onChange={this.descChange.bind(this)} value={this.state.desc}/>
                             </div>
 
                             <div className="radio" onChange={this.radioButton.bind(this)}>
@@ -169,10 +176,12 @@ class newPost extends Component {
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Grande</label>
                                 <input type="file" name="image" accept="image/*" onChange={this.imgChange.bind(this)}/>
+                                <img src={`${Config.DOMAIN}/upload/${this.state.img}`} alt="Imagem Principal" style={{maxHeight: '200px'}}/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Thumb</label>
                                 <input type="file" name="thumb" accept="image/*" onChange={this.thumbChange.bind(this)}/>
+                                <img src={`${Config.DOMAIN}/upload/${this.state.thumb}`} alt="Imagem Principal" style={{maxHeight: '200px'}}/>
                             </div>
                             
                             <button type="submit" className="btn btn-default" style={{backgroundColor: "black"}} id="btnEnviar">Enviar</button>
@@ -185,5 +194,11 @@ class newPost extends Component {
         )
     }
 }
+
+function mapStateTopProps(state){
+    return {
+        post: state.posts.post
+    }
+}
  
-export default newPost;
+export default connect(mapStateTopProps, null)(editPost);

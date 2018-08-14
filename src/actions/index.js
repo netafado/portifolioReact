@@ -19,7 +19,6 @@ export function logInUser({email, password}){
     }
 } 
 
-
 export async function  auth(){
     const request = await axios.get(`${process.env.API_URL||config.API_URL}/user/auth`,{withCredentials: true})
                         .then((response)=>{                                
@@ -37,9 +36,11 @@ export async function  auth(){
     }
 }
 
-export async function getPosts(){
-    const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog`, {withCredentials: true})
+export async function getPosts(limit, type){
+    const URL = `${process.env.API_URL||config.API_URL}/blog?type=${type}&limit=${limit}`
+    const req = await axios.get(URL, {withCredentials: true})
                             .then((res)=>{
+                                console.log(res.data)
                                 return res.data
                             })
                             .catch(err => {
@@ -53,6 +54,33 @@ export async function getPosts(){
     }
 }
 
+export async function getPostByAuthor(id){
+    const URL = `${process.env.API_URL||config.API_URL}/blog/user/posts/${id}`
+    const req = await axios.get(URL, {withCredentials:true})
+                    .then((resp)=>{
+                        return resp
+                    })
+                    .catch(err => err)
+    console.log(req);
+    return{
+        type: "GET_POSTS_BY_USER",
+        payload: req.data
+    }
+}
+
+export async function deletePostById(id){
+    const URL = `${process.env.API_URL||config.API_URL}/blog/${id}`
+    const req = await axios.delete(URL, {withCredentials:true})
+                    .then((resp)=>{
+                        return resp
+                    })
+                    .catch(err => err)
+    console.log(req);
+    return{
+        type: "DELETE_POST",
+        payload: req
+    }
+}
 
 export async function getPost(id){
     const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog/${id}`, {withCredentials: true})
@@ -67,5 +95,27 @@ export async function getPost(id){
     return {
         type: "GET_POST",
         payload: req
+    }
+}
+
+export async function getCursos(){
+    const  cursos =  await axios.get('https://teamtreehouse.com/isaiasfranciscodossantos.json')
+                                .then(res=>{
+                                    return res.data
+                                })
+                                .catch(err => {return {err}})
+
+    return {
+        type: {
+            type: "GET_CURSOS",
+            payload: cursos
+        }
+    }
+}
+
+export function navMob(value){
+    return {
+        type: "NAV_MOB",
+        payload: value || false
     }
 }

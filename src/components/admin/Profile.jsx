@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Layout from '../layout/index'
 import AnimationPage from '../animation/PageAnimation'
 import { Link } from 'react-router-dom'
@@ -18,6 +18,9 @@ const Profile = (props)=>{
                     </div>
                     <div className="info">
                         <Link to="user/post"> Novo post</Link>
+                    </div>
+                    <div className="info">
+                        <Link to={`user/posts/${props.login.user.id}`} > Editar posts</Link>
                     </div>
                 </div> 
             </AnimationPage>
