@@ -14,3 +14,18 @@
 .flex-menu-form > * {
     align-self: center
 }
+
+.descerPointer{
+    margin: auto;
+    display: block;
+    text-align: center
+}
+
+.descerPointer img{
+    margin: auto;
+    margin-top: 30px
+}
+
+.biggerScreen{
+    position: relative;
+}

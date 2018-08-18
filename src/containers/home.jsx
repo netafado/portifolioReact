@@ -6,6 +6,7 @@ import AnimationPage from '../components/animation/PageAnimation'
 import ScreenSize from '../utils/screenSize'
 import Posts from '../components/home/posts'
 import '../components/home/style.css'
+import Scroll from 'react-anchor-link-smooth-scroll'
 import {connect} from 'react-redux'
 import { getPosts } from '../actions'
 
@@ -27,10 +28,10 @@ class Home extends Component{
                     <ScreenSize classes="flex-center">
                         <div className="home" id="home">
                             <About /> 
-                            <Works /> 
-                            <a href="#posts" onClick={this.windowScroll}>
-                                <img src="img/baixo.svg" style={{'maxWidth':'80px'}} alt="Para baixo"/>
-                            </a>
+                            <Works />
+                            <Scroll href="#posts"  className="descerPointer">
+                                <img src="img/baixo.svg" style={{'maxWidth':'80px'}} alt="Para baixo" />
+                            </Scroll>
                         </div>
                     </ScreenSize>
                     <Posts id="posts" posts={this.props.posts.posts} />
