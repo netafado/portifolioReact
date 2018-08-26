@@ -28,10 +28,17 @@ class Home extends Component{
                     <ScreenSize classes="flex-center">
                         <div className="home" id="home">
                             <About /> 
+<<<<<<< HEAD
                             <Works />
                             <Scroll href="#posts"  className="descerPointer">
                                 <img src="img/baixo.svg" style={{'maxWidth':'80px'}} alt="Para baixo" />
                             </Scroll>
+=======
+                            <Works /> 
+                            <a href="#posts" onClick={this.windowScroll} className="arrowDown">
+                                <img src="img/baixo.svg" style={{'maxWidth':'80px'}} alt="Para baixo"/>
+                            </a>
+>>>>>>> 33163a446ef8ba11b2283572ff45eac407c0cb08
                         </div>
                     </ScreenSize>
                     <Posts id="posts" posts={this.props.posts.posts} />
