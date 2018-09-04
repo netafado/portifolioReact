@@ -14,3 +14,11 @@ video{
 .item-port{
     text-emphasis: center;
 }
+
+@media screen and (min-width: 1610px){
+    video{
+        width: 60%;
+        height: auto; 
+        margin: auto
+    } 
+}

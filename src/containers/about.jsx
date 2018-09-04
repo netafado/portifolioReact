@@ -46,20 +46,9 @@ class About extends Component {
             <Layout>
                 <AnimationPage animationName="page" type="slide" >
                     <div className="about-page container">
-                        <h1>Sobre</h1>
-                        <h3>Cursos</h3>
-                        {this.state.cursos ? 
+                        <h1>Sobre </h1>
+                        <p>Em contrução</p>
 
-                        this.state.cursos.map((item, i)=> {
-                            return(
-                            <div className="col-sm-1" key={i}>
-
-                                <img className="img-responsive" src={item.icon_url} />
-                            </div>)
-                        })
-                        : 
-                        
-                        null }
                     </div>
                 </AnimationPage>
             </Layout>
