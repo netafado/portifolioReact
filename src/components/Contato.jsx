@@ -14,7 +14,8 @@ class Contato extends Component{
             email: "",
             msg: "",
             err: "",
-            sended: false
+            sended: false,
+            msgButton: "Enviar"
          }
     }
     changeName = (e) => {
@@ -61,13 +62,19 @@ class Contato extends Component{
             });
             return
         }
-        console.log("msgf")
+        // mudar o botão para dar feedback ao usuario
+        let btnSend = document.getElementById('btnSend');
+        btnSend.setAttribute('disabled', "true");
+        btnSend.innerHTML = "Enviando...";
+
         axios.post(`${config.API_URL}/mail`, 
                 {msg: this.state.msg, name: this.state.name,email: this.state.email }, 
                 {withCredentials:true})
                 .then((data)=>{
-                    console.log(data);
-                    this.setState({sended: true})
+                    this.setState({sended: true});
+                    // mudar o botão para dar feedback ao usuario
+                    btnSend.setAttribute('disabled', "false");
+                    btnSend.innerHTML = "Enviar";
                 });
     }
     render(){
@@ -104,7 +111,7 @@ class Contato extends Component{
                     
                             <div className="form-group clearfix">
                                 <div className="col-md-12">
-                                    <button type="submit" className="btn btn-primary btn-lg" onClick={this.sendMail}>Submit</button>
+                                    <button type="submit" className="btn btn-primary btn-lg" id="btnSend" onClick={this.sendMail}>Enviar</button>
                                 </div>
                             </div>
                         </div>
