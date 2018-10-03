@@ -137,6 +137,7 @@ class BlogArtigo extends Component{
 
 
 function mapStateToProps(state){
+
     return{
         post: state.posts.post
     }

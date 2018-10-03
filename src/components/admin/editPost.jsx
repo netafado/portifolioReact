@@ -196,8 +196,9 @@ class editPost extends Component {
 }
 
 function mapStateTopProps(state){
+    console.log(state);
     return {
-        post: state.posts.post
+        post: state.blog.post.current
     }
 }
  

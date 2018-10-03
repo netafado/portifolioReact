@@ -23,7 +23,7 @@ class UserPost extends Component {
                         <h1>Seus posts:</h1>
                         <table className="table">
                             <tbody>
-                            {this.props.posts ?                   
+                            {this.props.posts && Array.isArray(this.props.posts) ?                   
                                 
                             this.props.posts.map((item, i)=>{
                                 return (
