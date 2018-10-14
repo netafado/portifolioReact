@@ -13,6 +13,8 @@ import Auth from '../hoc/auth'
 import UserPosts from '../containers/UserPosts'
 import Portifolio from '../containers/Portifolio'
 import userPOstEdit from '../components/admin/editPost'
+import ListaMetas from '../containers/metas/listarMeta'
+import Metas from '../containers/metas/meta'
 
 
 const Routes = (props)=>(
@@ -30,6 +32,8 @@ const Routes = (props)=>(
             <Route path="/post/:id" component={BlogArtigo} exact/>
             <Route path='/user/posts/:id' component={Auth(UserPosts)} exact />
             <Route path='/user/post/edit/:id' component={Auth(userPOstEdit)} exact />
+            <Route path="/financas" component={Auth(ListaMetas)} exact />
+            <Route path="/financas/create" component={Auth(Metas)} exact />
         </div>        
     </BrowserRouter >
 )

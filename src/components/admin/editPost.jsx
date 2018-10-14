@@ -22,7 +22,8 @@ class editPost extends Component {
             type: null,
             err: null,
             sended: null,
-            postID: this.props.match.params.id
+            postID: this.props.match.params.id,
+
          }
     }
     componentWillMount(){
