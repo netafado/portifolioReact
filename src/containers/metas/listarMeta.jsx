@@ -117,10 +117,40 @@ class ListarMeta extends Component {
                                            meta={this.state.listMetas[this.state.editMetasIndex]}/> : null}
                 <div className="container pd-40-top metas">
                     <div className="row">
-                        <div className="col-sm-12">
+                        <div className="col-sm-8">
+                            <h2>Suas metas</h2>
                             <ul className="metasflex">
                                 {this.state.listMetas && this.state.listMetas.length > 0 ? this.printMetas(this.state.listMetas) : <h2>Nenhuma meta</h2>}
                             </ul>
+                        </div>
+                        <div className="col-sm-4">
+                            <h4>Compare investimentos <br />Renda Fixa </h4>
+                            <ul>
+                                <li>CDI: 4.2%</li>
+                                <li>SELIC: 4.2%</li>
+                                <li>IPCA: 4.2%</li>
+                            </ul>
+                            <button>Ir</button>
+                        </div>
+                    </div>
+                    <div className="row pd-80-top">
+                        <div className="col-sm-4">
+                            <h4>Indicadores econômicos </h4>
+                                <ul>
+                                    <li>CDI: 4.2%</li>
+                                    <li>SELIC: 4.2%</li>
+                                    <li>IPCA: 4.2%</li>
+                                </ul>
+                        </div>
+                    </div>
+                    <div className="row pd-80-top">
+                        <div className="col-sm-4">
+                            <h4>Ideias </h4>
+                                <ul>
+                                    <li>Ter o perfil do investidor / para ajudar com as metas: Ex: A meta complomete mais de 30% da renda</li>
+                                    <li>PEgar os valores de indices economicos</li>
+                                    <li>IPCA: 4.2%</li>
+                                </ul>
                         </div>
                     </div>
                 </div>

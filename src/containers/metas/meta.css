@@ -15,6 +15,10 @@
     display: flex;
     justify-content: space-between
 }
+
+.metas .metasflex li:hover{
+    background-color: #1d1c1ce8
+}
 .metas .metasflex li span:first-child{
     width: 30%
 }
