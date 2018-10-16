@@ -5,7 +5,6 @@ import Values from './valuesList'
 //import ModalHeader from './modalHeader'
 import './modal.css'
 const Modal = (props) => {
-    moment.locale('pt');
     let dataInicial = new moment(props.meta.initialDate);
     let dataFinal = new moment(props.meta.deadline);
     let today = new moment(Date.now());
@@ -14,10 +13,7 @@ const Modal = (props) => {
     for(let i = 0; i < props.meta.values.length; i++){
         valorTotal += props.meta.values[i].value
     }
-    console.log(valorTotal);
     let valorMensal = -(valorTotal - props.meta.valueGoal) / (lestMonths > 0.1 ? lestMonths  : 1);
-
-    dataFinal.locale('pt');
     return(
 
         <div className="modal-financas" >
@@ -27,7 +23,7 @@ const Modal = (props) => {
                         <h4>{props.meta.name}</h4>
                         <p>{props.meta.desc}</p>
                         <small>
-                            <span>{props.meta.initialValue.toFixed(2)}</span> de <span>{props.meta.valueGoal.toFixed(2)}</span>
+                            <span>{valorTotal.toFixed(2)}</span> de <span>{props.meta.valueGoal.toFixed(2)}</span>
                         </small>
                         <p>
                             <small>Inicio: {dataInicial.format('MM/YYYY')} | fim: {dataFinal.format('MM/YYYY')}</small>
