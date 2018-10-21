@@ -8,7 +8,6 @@ const Msg =(props) => {
                     {props.msg}
                 </div>
             )
-
             break;
         case 'info':
             return(

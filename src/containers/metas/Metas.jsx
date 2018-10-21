@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Layout from '../../components/layout/'
-import './meta.css'
+import './metas.css'
 import { connect } from 'react-redux'
 import Modal from '../../components/metas/modal'
+import config  from '../../config'
 import moment from 'moment'
 import axios from 'axios';
 class ListarMeta extends Component {
@@ -34,7 +35,7 @@ class ListarMeta extends Component {
         })
     }
     componentWillMount(){
-        axios.get('http://localhost:3001/financa', {withCredentials: true})
+        axios.get(`${config.API_URL}/financa`, {withCredentials: true})
               .then(res => {
                   this.setState(()=>{
                       return {listMetas : res.data}
@@ -72,6 +73,15 @@ class ListarMeta extends Component {
             values: lista
         })
         
+    }
+
+    convertToMoney = (number)=>{
+        // se tiver uma . trocar por ,
+        // a cada 3
+        var stringNumber  = number.toFixed(2).toString();
+        stringNumber = stringNumber.replace(".", ",");
+        return stringNumber;
+
     }
     addValue = async (id)=>{
 
@@ -130,7 +140,7 @@ class ListarMeta extends Component {
                                 <ul>
                                     <li>CDI: 4.2%</li>
                                     <li>SELIC: 4.2%</li>
-                                    <li>IPCA: 4.2%</li>
+                                    <li>IPCA: {this.convertToMoney(2345.30)}</li>
                                 </ul>
                         </div>
                     </div>

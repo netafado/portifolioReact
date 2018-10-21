@@ -13,8 +13,8 @@ import Auth from '../hoc/auth'
 import UserPosts from '../containers/UserPosts'
 import Portifolio from '../containers/Portifolio'
 import userPOstEdit from '../components/admin/editPost'
-import ListaMetas from '../containers/metas/listarMeta'
-import Metas from '../containers/metas/meta'
+import ListaMetas from '../containers/metas/Metas'
+import Metas from '../containers/metas/criarMeta'
 
 
 const Routes = (props)=>(

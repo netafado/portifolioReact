@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Layout from '../../components/layout/'
-import './meta.css'
+import './metas.css'
 import { connect } from 'react-redux'
+import config  from '../../config'
 import axios from 'axios';
 import Msg from '../../utils/msg'
 class Meta extends Component {
@@ -38,7 +39,7 @@ class Meta extends Component {
             this.setState({err: true})
             return
         }
-        await axios.post(`http://localhost:3001/financa`, this.state, {withCredentials: true})
+        await axios.post(`${config.API_URL}/financa`, this.state, {withCredentials: true})
                 .then( data => {
                     this.resetState();
                     this.setState({
