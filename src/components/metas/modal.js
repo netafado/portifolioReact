@@ -16,7 +16,7 @@ const Modal = (props) => {
     let valorMensal = -(valorTotal - props.meta.valueGoal) / (lestMonths > 0.1 ? lestMonths  : 1);
     return(
 
-        <div className="modal-financas" >
+        <div className="modal-financas" style={ {transform: props.show ? "translate-Y(0))" : "translate-Y((-100vh)"}}>
             <div className="modal-body">
                 <header>
                     <div className="info">
