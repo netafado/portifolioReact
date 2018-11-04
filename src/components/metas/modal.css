@@ -14,11 +14,13 @@
     position: absolute;
     top: 0; 
     left: 0;
+    opacity: 0;
     height: 100vh;
     width: 100%;
+    transform: translateY(-100vh);
     justify-content: center;
     align-items: center;
-    transition: 1s
+    transition: .5s
 }
 .modal-financas .info{
     padding-right: 50px

@@ -119,12 +119,12 @@ class ListarMeta extends Component {
     render(){
         return (
             <Layout>
-                {this.state.modal ? <Modal f_modal={this.modal} 
+                <Modal f_modal={this.modal} 
                                            show={this.state.modal}
                                            f_addValue={this.addValue}
                                            f_changeValue={this.changeValue}
                                            f_changeDesc={this.changeDesc}
-                                           meta={this.state.listMetas[this.state.editMetasIndex]}/> : null}
+                                           meta={this.state.listMetas[this.state.editMetasIndex]}/>
                 <div className="container pd-40-top metas">
                     <div className="row">
                         <div className="col-sm-12">

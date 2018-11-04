@@ -5,6 +5,12 @@ import Values from './valuesList'
 //import ModalHeader from './modalHeader'
 import './modal.css'
 const Modal = (props) => {
+    if(!props.meta)
+        return (
+            <div className="modal-financas">
+                <h1>Carregando</h1>
+            </div>
+        )
     let dataInicial = new moment(props.meta.initialDate);
     let dataFinal = new moment(props.meta.deadline);
     let today = new moment(Date.now());
@@ -13,10 +19,12 @@ const Modal = (props) => {
     for(let i = 0; i < props.meta.values.length; i++){
         valorTotal += props.meta.values[i].value
     }
+    console.log(props.show)
+    let styleModal = props.show ? {transform:  "translateY(0)", opacity: 1} : {transform:  "translateY(-100vh)", opacity: 0}
     let valorMensal = -(valorTotal - props.meta.valueGoal) / (lestMonths > 0.1 ? lestMonths  : 1);
     return(
 
-        <div className="modal-financas" style={ {transform: props.show ? "translate-Y(0))" : "translate-Y((-100vh)"}}>
+        <div className="modal-financas" style={styleModal}>
             <div className="modal-body">
                 <header>
                     <div className="info">
