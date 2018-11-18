@@ -45,7 +45,7 @@ class ListarMeta extends Component {
     }
 
     deleteMeta = (id)=>{
-        axios.delete('http://localhost:3001/financa/delete/' + id, {withCredentials: true})
+        axios.delete(`${config.API_URL}/financa/delete/${id}`, {withCredentials: true})
               .then(res => {
                   this.setState(()=>{
                       return {listMetas : res.data}
@@ -91,7 +91,7 @@ class ListarMeta extends Component {
             return
         }
             
-        let url = `http://localhost:3001/financa/${id}/addValue`;
+        let url = `${config.API_URL}/financa/${id}/addValue`;
         console.log(id);
         await axios.put(url, {value: this.state.values.value, idFin:id, desc: this.state.values.desc}, {withCredentials: true})
               .then(res => {
