@@ -28,7 +28,7 @@ const BlogItem = (props) => {
     return(
     <div id={props.id} className="container pd-40-top pd-80-bottom">
         <div className="row">
-            <h1 className="text-center pd-40-bottom">Ultimos trabalhos</h1>
+            <h1 className="text-center pd-40-bottom">Últimos trabalhos</h1>
             {props.posts ? Itens(props.posts)  : null}
         </div>
     </div>

@@ -22,7 +22,8 @@ class editPost extends Component {
             type: null,
             err: null,
             sended: null,
-            postID: this.props.match.params.id
+            postID: this.props.match.params.id,
+
          }
     }
     componentWillMount(){
@@ -196,8 +197,9 @@ class editPost extends Component {
 }
 
 function mapStateTopProps(state){
+    console.log(state);
     return {
-        post: state.posts.post
+        post: state.blog.post.current
     }
 }
  

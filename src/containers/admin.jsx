@@ -47,9 +47,8 @@ class Admin extends Component{
                 <AnimationPage type="fade">                    
                     <ScreenSize classes="container flex-menu-form">
                         <div className="card card-form card-container col-md-4 col-md-offset-4">
-
                             {this.state.err ? <Msg type="err" msg={this.state.err} /> : null}
-                            <form className="form-signin" onClick={this.sendInfo.bind(this)}>
+                            <form className="form-signin" >
                                 <span id="reauth-email" className="reauth-email"></span>
                                 <input type="email" id="inputEmail" 
                                         className="form-control" placeholder="Email address" required  
@@ -58,7 +57,7 @@ class Admin extends Component{
                                 <input type="password" id="inputPassword" className="form-control" placeholder="Password" 
                                         required value={this.state.password} 
                                         onChange={this.handlePassInput}/>
-                                <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit" >Sign in</button>
+                                <button className="btn btn-lg btn-primary btn-block btn-signin" type="submit" onClick={this.sendInfo.bind(this)}>Sign in</button>
                                 {}
                             </form>
                         </div>

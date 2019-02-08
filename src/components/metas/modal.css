@@ -1,0 +1,91 @@
+
+#fechar{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer
+}
+
+
+.modal-financas {
+    z-index: 8;
+    display: flex;
+    background-color: rgba(0,0,0, 0.8);
+    position: absolute;
+    top: 0; 
+    left: 0;
+    opacity: 0;
+    height: 100vh;
+    width: 100%;
+    transform: translateY(-100vh);
+    justify-content: center;
+    align-items: center;
+    transition: .5s
+}
+.modal-financas .info{
+    padding-right: 50px
+}
+
+.modal-financas .porc{
+    border-left: 1px solid white;
+    padding-left: 10px
+}
+.modal-financas .flex{
+    padding: 0;
+
+}
+.modal-financas .flex li{
+    padding: 10px 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px 10px
+}
+.modal-financas .flex li{
+    border-bottom: 1px solid white;
+}
+.modal-financas .flex li:nth-child(odd){
+    background-color: #292525
+}
+
+
+.modal-financas .modal-body{
+    background-color: #151515;
+    padding: 20px;
+    width: 70%;
+    min-height: 320px;
+    min-height: 320px;
+    border: 1px solid #6b0e1d;
+}
+
+
+
+.modal-financas footer div input:nth-child(2){
+    margin: 0 10px
+}
+.modal-financas footer div{
+    display:flex;
+    width: 100%;
+}
+.modal-financas footer label{
+    display:block;
+    width: 100%;
+}
+.modal-financas footer div > *{
+    width: 32%;
+}
+
+
+
+.modal-financas .modal-body > header{
+    border-bottom: 0.5px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+
+.modal-financas .modal-body > header .porc span:nth-child(2){
+    font-size: 60px;
+    width: 100%;
+}

@@ -82,6 +82,7 @@ export async function deletePostById(id){
     }
 }
 
+
 export async function getPost(id){
     const req = await axios.get(`${process.env.API_URL||config.API_URL}/blog/${id}`, {withCredentials: true})
                             .then((res)=>{
