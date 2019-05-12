@@ -40,5 +40,5 @@ input, select, textarea, input.form-control, select.form-control, textarea.form-
 input, select, textarea, input.form-control, select.form-control, textarea.form-control {
     border-radius: 4px;
     border: 2px solid #d3d3d3;
-    color: black !important;
+    color: black;
 }

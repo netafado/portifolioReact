@@ -36,6 +36,10 @@
 }
 
 
+.pageAnimation input, pageAnimation select, .pageAnimation textarea, .pageAnimation input.form-control, select.form-control, textarea.form-control{
+    color: white;
+}
+
 @keyframes down{
     0%{
         opacity: 0;
